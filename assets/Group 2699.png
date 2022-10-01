@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="38.512" viewBox="0 0 32 38.512">
+  <g id="Group_2699" data-name="Group 2699" transform="translate(0.269)">
+    <path id="Icon_awesome-clipboard-check" data-name="Icon awesome-clipboard-check" d="M10.892,2.075H8.3a2.075,2.075,0,0,0-4.149,0H1.556A1.556,1.556,0,0,0,0,3.631V15.042A1.556,1.556,0,0,0,1.556,16.6h9.336a1.556,1.556,0,0,0,1.556-1.556V3.631A1.556,1.556,0,0,0,10.892,2.075ZM6.224,1.3a.778.778,0,1,1-.778.778A.776.776,0,0,1,6.224,1.3Zm3.929,7.514-4.636,4.6a.389.389,0,0,1-.551,0L2.289,10.7a.389.389,0,0,1,0-.551l.921-.914a.389.389,0,0,1,.551,0l1.491,1.5,3.436-3.41a.389.389,0,0,1,.551,0l.914.921A.389.389,0,0,1,10.153,8.811Z" transform="translate(10.154)" fill="#fff"/>
+    <text id="To-do" transform="translate(15.731 35.512)" fill="#fff" font-size="12" font-family="HelveticaNeue, Helvetica Neue"><tspan x="-15" y="0">To-do</tspan></text>
+  </g>
+</svg>

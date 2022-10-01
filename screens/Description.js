@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { getinfo } from '../actions/http';
 import { LinearGradient } from "expo-linear-gradient";
 import Ionicons from '@expo/vector-icons/Ionicons';
-
+import theme from "../theme/Config";
 export default function Description({route,navigation}) {
 
 const [animeDescription, setAnimeDescription] = useState();
@@ -52,13 +52,13 @@ checkData ?( <View style={styles.container}>
   <ImageBackground style={styles.image} source={{uri: animeDescription.image}}>
   <LinearGradient   colors={["#bfafb2","#000"]} style={styles.overlay}></LinearGradient>
   <Pressable onPress={navigation.goBack} style={{position: 'absolute', top: "18%", left: "5%"}}>
-              <Ionicons name="arrow-back-outline" size={25} color="#fff" />
+              <Ionicons name="arrow-back-outline" size={25} color={theme.text.theme} />
           </Pressable>
-          <Text style={styles.AnimeTitle}>{animeDescription.title}</Text>
+          <Text style={styles.AnimeTitle}>{animeDescription.title.userPreferred?animeDescription.title.userPreferred:animeDescription.title.english}</Text>
           <Image source={{uri: animeDescription.image}} style={styles.CoverImage} />
   </ImageBackground>
   </View>
-<View style={{paddingHorizontal: 10, flex: 1,backgroundColor:"black",paddingBottom:30}}>
+<View style={{paddingHorizontal: 10, flex: 1,backgroundColor:theme.bg.wallpaper,paddingBottom:30}}>
 <View style={{flex: 1, height: 200}}>
                 <FlatList
                   initialNumToRender={10}
@@ -66,7 +66,7 @@ checkData ?( <View style={styles.container}>
                   data={episodes}
                   renderItem={({item})=>(
                     <TouchableOpacity style={styles.episodeTitle} onPress={()=> handleEpisode(item.id)}>
-                        <Text style={{fontSize: 22, fontFamily: "lob-bold", color: "#fff"}}>{item.number}</Text>
+                        <Text style={{fontSize: 22, fontFamily: "lob-bold", color:theme.text.theme}}>{item.number}</Text>
                     </TouchableOpacity>
                   )}
                   keyExtractor={(item)=>item.number}
@@ -76,29 +76,29 @@ checkData ?( <View style={styles.container}>
 
                   <>
                     <View style={{paddingTop: 20}}>
-                      <Text style={{fontFamily: 'pop-bold', color: "#fff",paddingBottom: 5}}>Description</Text>
-                      <Text style={styles.description}>{animeDescription.description}</Text>
-                      <Text style={{fontFamily: 'pop-bold', color: "#fff", paddingBottom: 10}}>Geners</Text>
-                      <View style={{fontFamily: 'pop-regular', color: "#fff", flexDirection: "row", flexWrap: 'wrap'}}>{(animeDescription.genres?.map((item)=>(
+                      <Text style={{fontFamily: 'pop-bold',color:theme.text.heading,paddingBottom: 5}}>Description</Text>
+                      <Text style={[styles.description,{color:theme.text.theme}]}>{animeDescription.description}</Text>
+                      <Text style={{fontFamily: 'pop-bold', color:theme.text.heading, paddingBottom: 10}}>Geners</Text>
+                      <View style={{fontFamily: 'pop-regular', color:theme.text.theme, flexDirection: "row", flexWrap: 'wrap'}}>{(animeDescription.genres?.map((item)=>(
                         <View key={`${item}1`} style={styles.genersContainer}>
                           <Text key={item} style={styles.geners}>{item}</Text>
                         </View>
                       )))}</View>
                       <View style={{flexDirection: 'row', flexWrap: "wrap", marginTop: 10}}>
-                        <Text style={{fontFamily: 'pop-bold', color: "#fff", paddingBottom: 10}}>Status:</Text>
-                        <Text style={{fontFamily: 'pop-regular', color: "red", paddingHorizontal: 10}}>{animeDescription.status}</Text>
-                        <Text style={{fontFamily: 'pop-bold', color: "#fff", paddingBottom: 10}}>Release Date:</Text>
-                        <Text style={{fontFamily: 'pop-regular', color: "red", paddingHorizontal: 10}}>{animeDescription.releaseDate}</Text>
-                        <Text style={{fontFamily: 'pop-bold', color: "#fff", paddingBottom: 10}}>Sub Or Dub:</Text>
-                        <Text style={{fontFamily: 'pop-regular', color: "red", paddingHorizontal: 10}}>{animeDescription.subOrDub.toUpperCase()}</Text>
-                        <Text style={{fontFamily: 'pop-bold', color: "#fff", paddingBottom: 10}}>Anime type:</Text>
-                        <Text style={{fontFamily: 'pop-regular', color: "red", paddingHorizontal: 10}}>{animeDescription.type}</Text>
+                        <Text style={{fontFamily: 'pop-bold', color:theme.text.heading, paddingBottom: 10}}>Status:</Text>
+                        <Text style={{fontFamily: 'pop-regular', color:theme.text.highlight, paddingHorizontal: 10}}>{animeDescription.status}</Text>
+                        <Text style={{fontFamily: 'pop-bold', color:theme.text.heading, paddingBottom: 10}}>Release Date:</Text>
+                        <Text style={{fontFamily: 'pop-regular', color:theme.text.highlight, paddingHorizontal: 10}}>{animeDescription.releaseDate}</Text>
+                        <Text style={{fontFamily: 'pop-bold', color:theme.text.heading, paddingBottom: 10}}>Sub Or Dub:</Text>
+                        <Text style={{fontFamily: 'pop-regular', color:theme.text.highlight, paddingHorizontal: 10}}>{animeDescription.subOrDub.toUpperCase()}</Text>
+                        <Text style={{fontFamily: 'pop-bold', color:theme.text.heading, paddingBottom: 10}}>Anime type:</Text>
+                        <Text style={{fontFamily: 'pop-regular', color:theme.text.highlight, paddingHorizontal: 10}}>{animeDescription.type}</Text>
                       </View>
                     </View>
                     <View style={{flexDirection: "row", alignItems: "center", marginVertical: 10}}>
                         <Ionicons  name="list-outline" size={25} color={"red"} />
                         <Text style={{
-                          fontFamily: "pop-bold",color: "#fff", alignItems: "center",paddingHorizontal: 5, fontSize: 18
+                          fontFamily: "pop-bold",color:theme.text.heading, alignItems: "center",paddingHorizontal: 5, fontSize: 18
                         }}>Episode List</Text>
                     </View>
                   </>
@@ -119,7 +119,8 @@ const styles = StyleSheet.create({
   container:{
 flex:1,
 justifyContent:"center",
-alignContent:"center"
+alignContent:"center",
+backgroundColor:theme.bg.wallpaper 
 
 
 
@@ -137,7 +138,7 @@ alignContent:"center"
   },
   description:{
     fontFamily: "pop-regular",
-    color: '#fff',
+    color:theme.text.theme,
     marginBottom: 10
 
   },
@@ -176,7 +177,7 @@ flex:1,
     position:"absolute"
   },
   AnimeTitle: {
-    color: "#fff",
+    color:theme.text.theme,
     fontSize: 20,
     position: "absolute",
     bottom: 20,

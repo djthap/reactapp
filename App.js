@@ -40,7 +40,7 @@ export default function App() {
   }
   return (
     <>
-      <StatusBar animated={true} barStyle="dark-content" />
+      <StatusBar  style='light' />
       <NavigationContainer>
         <slack.Navigator
           screenOptions={{

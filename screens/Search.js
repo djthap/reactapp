@@ -20,6 +20,8 @@ import {
   ActivityIndicator,
   Pressable
 } from "react-native";
+import theme from "../theme/Config";
+
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SearchAnime } from "../actions/http";
 import Card from "../Components/Card";
@@ -64,23 +66,24 @@ export default function Search({navigation}) {
     //   style={[styles.view]}
     //   source={require("../assets/pics/bga.jpg")}
     // >
-      <SafeAreaView style={{flex:1,paddingTop:25}} >
-          <View >
+      <SafeAreaView style={{flex:1,paddingTop:35, backgroundColor:theme.bg.wallpaper}}  >
+          {/* <View >
             <Text style={styles.text}>Amaterasu</Text>
-          </View>
+          </View> */}
           <View style={styles.inputContainer}>
           <Pressable onPress={navigation.goBack} style={{  left: "3%" ,width:"12%"}}>
-              <Ionicons name="arrow-back-outline" size={45} color="black" />
+              <Ionicons name="arrow-back-outline" size={45} color={theme.text.theme} />
           </Pressable>
             <TextInput 
               style={styles.textinput}
               onChangeText={handletext}
+              autoFocus
               placeholder="This is a Search"
             />
            
           </View>
         {
-          loading? <View style={[{flex:1,justifyContent:"center"}]}>
+          loading? <View style={[{flex:1,justifyContent:"center",backgroundColor:theme.bg.wallpaper }]}>
 <ActivityIndicator color={"red"} size={"large"}/>
           </View>: <View style={styles.container}>
         
@@ -90,7 +93,7 @@ export default function Search({navigation}) {
                 data={list}
                 numColumns={3}
                 renderItem={({ item }) => {
-                  return <Card OnClick={OnClick} id={item.id} item={item} />;
+                  return <Card OnClick={OnClick}  id={item.id}  item={item} />;
                 }}
                 keyExtractor={(item) => item.id}
               />
@@ -159,8 +162,10 @@ flex:1,
     paddingVertical: 10,
     paddingLeft:5,
     marginHorizontal:10,
-    borderColor: "black",
+    color:theme.text.theme,
     borderWidth: 1,
+    borderColor:theme.text.theme
+
 
   },
   listContainer: {

@@ -4,8 +4,9 @@ import { Video } from 'expo-av';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import { getAnimeVideoLink } from '../actions/http';
 import {Dimensions} from 'react-native';
+import theme from "../theme/Config";
 
-import Ionicons from '@expo/vector-icons/Ionicons';
+import Ionicons,{FontAwesome} from '@expo/vector-icons/Ionicons';
 
 
 const WatchVideo = ({route}) => {
@@ -77,7 +78,7 @@ const WatchVideo = ({route}) => {
                 console.log(e)
               }}
               />
-              <View style={{paddingHorizontal: 10, flex: 1, backgroundColor: "#000"}}>
+              <View style={{paddingHorizontal: 10, flex: 1, backgroundColor: theme.bg.wallpaper}}>
           
               <View style={{flex: 1, height: 200}}>
                   <FlatList
@@ -86,7 +87,7 @@ const WatchVideo = ({route}) => {
                     data={episodeLists}
                     renderItem={({item})=>(
                       <TouchableOpacity style={styles.episodeTitle} onPress={()=> handleEpisode(item.id)}>
-                          <Text style={{fontSize: 22, fontFamily: "lob-bold", color: "#fff"}}>{item.number}</Text>
+                          <Text style={{fontSize: 22, fontFamily: "lob-bold", color:theme.text.theme}}>{item.number}</Text>
                       </TouchableOpacity>
                     )}
                     keyExtractor={(item)=>item.number}
@@ -95,30 +96,30 @@ const WatchVideo = ({route}) => {
                     ListHeaderComponent={
                     <>
                       <View style={{paddingTop: 20}}>
-                        <Text style={{fontFamily: 'pop-bold', color: "#fff",paddingBottom: 5, fontSize: 22, color: "red"}}>{animeDetails.title}</Text>
-                        <Text style={{fontFamily: 'pop-bold', color: "#fff",paddingBottom: 5}}>Description</Text>
-                        <Text style={styles.description}>{animeDetails.description}</Text>
-                        <Text style={{fontFamily: 'pop-bold', color: "#fff", paddingBottom: 10}}>Geners</Text>
-                        <View style={{fontFamily: 'pop-regular', color: "#fff", flexDirection: "row", flexWrap: 'wrap'}}>{(animeDetails.genres?.map((item)=>(
+                        <Text style={{fontFamily: 'pop-bold',color:theme.text.highlight,paddingBottom: 5, fontSize: 22}}>{animeDetails.title.english}</Text>
+                        <Text style={{fontFamily: 'pop-bold', color:theme.text.heading,paddingBottom: 5}}>Description</Text>
+                        <Text style={[styles.description,{color:theme.text.theme}]}>{animeDetails.description}</Text>
+                        <Text style={{fontFamily: 'pop-bold', color:theme.text.heading, paddingBottom: 10}}>Geners</Text>
+                        <View style={{fontFamily: 'pop-regular', color:theme.text.theme, flexDirection: "row", flexWrap: 'wrap'}}>{(animeDetails.genres?.map((item)=>(
                           <View key={`${item}1`} style={styles.genersContainer}>
                             <Text key={item} style={styles.geners}>{item}</Text>
                           </View>
                         )))}</View>
                         <View style={{flexDirection: 'row', flexWrap: "wrap", marginTop: 10}}>
-                          <Text style={{fontFamily: 'pop-bold', color: "#fff", paddingBottom: 10}}>Status:</Text>
-                          <Text style={{fontFamily: 'pop-regular', color: "red", paddingHorizontal: 10}}>{animeDetails.status}</Text>
-                          <Text style={{fontFamily: 'pop-bold', color: "#fff", paddingBottom: 10}}>Release Date:</Text>
-                          <Text style={{fontFamily: 'pop-regular', color: "red", paddingHorizontal: 10}}>{animeDetails.releaseDate}</Text>
-                          <Text style={{fontFamily: 'pop-bold', color: "#fff", paddingBottom: 10}}>Sub Or Dub:</Text>
-                          <Text style={{fontFamily: 'pop-regular', color: "red", paddingHorizontal: 10}}>{animeDetails.subOrDub.toUpperCase()}</Text>
-                          <Text style={{fontFamily: 'pop-bold', color: "#fff", paddingBottom: 10}}>Anime type:</Text>
-                          <Text style={{fontFamily: 'pop-regular', color: "red", paddingHorizontal: 10}}>{animeDetails.type}</Text>
+                          <Text style={{fontFamily: 'pop-bold', color:theme.text.heading, paddingBottom: 10}}>Status:</Text>
+                          <Text style={{fontFamily: 'pop-regular', color:theme.text.highlight, paddingHorizontal: 10}}>{animeDetails.status}</Text>
+                          <Text style={{fontFamily: 'pop-bold', color:theme.text.heading, paddingBottom: 10}}>Release Date:</Text>
+                          <Text style={{fontFamily: 'pop-regular', color:theme.text.highlight, paddingHorizontal: 10}}>{animeDetails.releaseDate}</Text>
+                          <Text style={{fontFamily: 'pop-bold', color:theme.text.heading, paddingBottom: 10}}>Sub Or Dub:</Text>
+                          <Text style={{fontFamily: 'pop-regular', color:theme.text.highlight, paddingHorizontal: 10}}>{animeDetails.subOrDub.toUpperCase()}</Text>
+                          <Text style={{fontFamily: 'pop-bold', color:theme.text.heading, paddingBottom: 10}}>Anime type:</Text>
+                          <Text style={{fontFamily: 'pop-regular', color:theme.text.highlight, paddingHorizontal: 10}}>{animeDetails.type}</Text>
                         </View>
                       </View>
                       <View style={{flexDirection: "row", alignItems: "center", marginVertical: 10}}>
                           <Ionicons  name="list-outline" size={25} color={"red"} />
                           <Text style={{
-                            fontFamily: "pop-bold",color: "#fff", alignItems: "center",paddingHorizontal: 5, fontSize: 18
+                            fontFamily: "pop-bold",color:theme.text.heading, alignItems: "center",paddingHorizontal: 5, fontSize: 18
                           }}>Episode List</Text>
                       </View>
                     </>
@@ -137,13 +138,14 @@ const WatchVideo = ({route}) => {
 const styles = StyleSheet.create({
   contianer:{
     flex: 1,
+    
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: "#000"
+    backgroundColor: theme.bg.wallpaper
   },
   description:{
     fontFamily: "pop-regular",
-    color: '#fff',
+    color:theme.text.theme,
     marginBottom: 10
 
   },
@@ -162,7 +164,7 @@ const styles = StyleSheet.create({
     fontFamily: 'pop-medium',
   },
   AnimeTitle: {
-    color: "#fff",
+    color:theme.text.theme,
     fontSize: 20,
     position: "absolute",
     bottom: 20,

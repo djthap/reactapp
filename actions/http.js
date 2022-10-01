@@ -3,7 +3,7 @@ import axios from "axios";
 export async function SearchAnime(data){
     try{ 
         
-        const response = await axios.get(`https://consumet-api.herokuapp.com/anime/gogoanime/${data}`,  {
+        const response = await axios.get(`https://consumet-api.herokuapp.com/meta/anilist/${data}`,  {
             headers: {
             'Content-Type': 'application/json'
             }
@@ -17,7 +17,7 @@ export async function SearchAnime(data){
 export async function getinfo(data){
     try{ 
         
-        const response = await axios.get(`https://consumet-api.herokuapp.com/anime/gogoanime/info/${data}`,  {
+        const response = await axios.get(`https://consumet-api.herokuapp.com/meta/anilist/info/${data}`,  {
             headers: {
             'Content-Type': 'application/json'
             }
@@ -33,7 +33,7 @@ export async function getTrending(){
    
     try
     {
-        const response = await axios.post('https://consumet-api.herokuapp.com/meta/anilist/trending', {
+        const response = await axios.get('https://consumet-api.herokuapp.com/meta/anilist/trending', {
             headers: {
             'Content-Type': 'application/json'
             }

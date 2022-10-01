@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "RNapp2",
-    "slug": "RNapp2",
+    "name": "Amitrasu",
+    "slug": "Amitrasu",
     "version": "1.0.0",
     "orientation": "default",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/pics/playstore.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -24,10 +24,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.djthap.RNapp2"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "275bb46a-d141-468c-801b-729ba86cc920"
+      }
     }
   }
 }
